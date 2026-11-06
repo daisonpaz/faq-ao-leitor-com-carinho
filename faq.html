@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Ao Leitor com Carinho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ece0c4;
+    --paper-2: #e2d3a9;
+    --ink: #221b12;
+    --ink-soft: #4a4030;
+    --red: #a9331d;
+    --blue: #2b4c6f;
+    --yellow: #c98f2b;
+    --rule: #b3a179;
+    --panel-shadow: 6px 6px 0 rgba(34,27,18,0.9);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'PT Serif', serif;
+  }
+
+  body{
+    background-image:
+      radial-gradient(rgba(34,27,18,0.10) 1px, transparent 1.1px);
+    background-size: 7px 7px;
+    background-attachment: fixed;
+  }
+
+  .wrap{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{
+    position: relative;
+    margin: 28px 0 36px;
+    padding: 34px 26px 30px;
+    background: var(--ink);
+    color: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: var(--panel-shadow);
+  }
+  .masthead::before{
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(236,224,196,0.35);
+    pointer-events: none;
+  }
+  .kicker-line{
+    font-family: 'Special Elite', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--yellow);
+    margin: 0 0 10px;
+  }
+  .masthead h1{
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 8vw, 4.4rem);
+    line-height: 0.92;
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
+    text-shadow: 3px 3px 0 var(--red);
+  }
+  .masthead p.sub{
+    margin: 14px 0 0;
+    max-width: 55ch;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #ddcfa9;
+  }
+  .burst{
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    width: 96px;
+    height: 96px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-9deg);
+    box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px var(--ink);
+  }
+  .burst span{
+    font-family: 'Anton', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.05;
+    color: var(--paper);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- INTRO ---------- */
+  .intro{
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    padding: 20px 22px;
+    margin-bottom: 34px;
+    box-shadow: var(--panel-shadow);
+  }
+  .intro p{
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  .intro p + p{ margin-top: 12px; }
+
+  /* ---------- FILTER PILLS ---------- */
+  .filters{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+  .filters button{
+    font-family: 'PT Serif', serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 7px 14px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(34,27,18,0.9);
+    transition: transform 0.08s ease;
+  }
+  .filters button:hover{ transform: translate(-1px,-1px); }
+  .filters button.active{
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* ---------- CATEGORY SECTION ---------- */
+  .category{
+    margin-bottom: 40px;
+  }
+  .category-head{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 14px;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 8px;
+  }
+  .category-num{
+    font-family: 'Anton', sans-serif;
+    font-size: 1.6rem;
+    color: var(--paper);
+    background: var(--red);
+    padding: 2px 10px;
+    line-height: 1.2;
+  }
+  .category[data-cat="metodos"] .category-num,
+  .category[data-cat="estrategias"] .category-num{ background: var(--blue); }
+  .category[data-cat="pirataria"] .category-num,
+  .category[data-cat="era-de-ouro"] .category-num{ background: var(--ink); }
+  .category[data-cat="curiosidades"] .category-num{ background: var(--yellow); }
+
+  .category-head h2{
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- ACCORDION ---------- */
+  details.qa{
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    margin-bottom: 12px;
+    box-shadow: 4px 4px 0 rgba(34,27,18,0.85);
+  }
+  details.qa summary{
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 46px 14px 18px;
+    font-weight: 700;
+    font-size: 1.02rem;
+    position: relative;
+    line-height: 1.4;
+  }
+  details.qa summary::-webkit-details-marker{ display: none; }
+  details.qa summary::after{
+    content: "+";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Anton', sans-serif;
+    font-size: 1.4rem;
+    color: var(--red);
+  }
+  details.qa[open] summary::after{ content: "–"; }
+  details.qa[open] summary{
+    border-bottom: 2px solid var(--rule);
+  }
+  details.qa .a{
+    padding: 4px 18px 20px;
+    font-size: 0.98rem;
+    line-height: 1.68;
+  }
+  details.qa .a p{ margin: 0 0 12px; }
+  details.qa .a p:last-child{ margin-bottom: 0; }
+  details.qa .a ul{
+    margin: 0 0 12px;
+    padding-left: 20px;
+  }
+  details.qa .a li{ margin-bottom: 6px; }
+  details.qa .a strong{ color: var(--red); }
+
+  /* ---------- FOOTER ---------- */
+  .colophon{
+    margin-top: 48px;
+    padding-top: 18px;
+    border-top: 3px double var(--ink);
+    font-family: 'Special Elite', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 540px){
+    .burst{ position: static; margin: 0 0 16px; transform: rotate(-5deg); }
+    .masthead{ padding-top: 26px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="burst"><span>PERGUNTAS<br>&amp; RESPOSTAS</span></div>
+    <p class="kicker-line">EDIÇÃO ESPECIAL — BASTIDORES DA EDITORA</p>
+    <h1>AO LEITOR<br>COM CARINHO</h1>
+    <p class="sub">Um guia de perguntas e respostas sobre o editor, a história por trás da editora, seus métodos de trabalho e o universo do domínio público em quadrinhos.</p>
+  </header>
+
+  <div class="intro">
+    <p>Este FAQ reúne as respostas, organizadas por tema, que o editor <strong>Eric</strong>, fundador da <strong>Ao Leitor com Carinho</strong>, deu em entrevistas em vídeo sobre a criação da editora, suas motivações pessoais, o método de trabalho artesanal por trás de cada edição e as regras — muitas vezes mal compreendidas — que cercam a publicação de material em domínio público.</p>
+    <p>Use os filtros abaixo para pular direto para o assunto que te interessa, ou role a página para ler tudo.</p>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="active" data-filter="all">Tudo</button>
+    <button data-filter="historia">História &amp; motivações</button>
+    <button data-filter="objetivo">Objetivo da editora</button>
+    <button data-filter="metodos">Métodos de trabalho</button>
+    <button data-filter="estrategias">Estratégias de publicação</button>
+    <button data-filter="pirataria">Pirataria x não licenciado</button>
+    <button data-filter="era-de-ouro">Era de ouro</button>
+    <button data-filter="curiosidades">Curiosidades</button>
+  </div>
+
+  <!-- 1. HISTÓRIA E MOTIVAÇÕES -->
+  <section class="category" data-cat="historia">
+    <div class="category-head">
+      <span class="category-num">01</span>
+      <h2>História e motivações</h2>
+    </div>
+
+    <details class="qa" open>
+      <summary>Quem é o fundador da Ao Leitor com Carinho?</summary>
+      <div class="a">
+        <p>Eric nasceu em 1981 e é fã de quadrinhos desde os 6 anos de idade, com as primeiras lembranças de leitura datando de 1987. Colecionador desde criança, começou pelos quadrinhos infantis comuns nos anos 80 — Disney, Hanna-Barbera, Turma da Mônica, Pantera Cor-de-Rosa — e migrou depois para super-heróis ao comprar os formatinhos coloridos de Wolverine e Conan, o Bárbaro, lançados pela Editora Abril em 1992. Na juventude, trabalhou por dois anos em uma revistaria de posto de gasolina para custear seus estudos de arte e, no passado, escaneou e enviou mais de 1.000 edições para o site Guia EBAL.</p>
+        <p>Fora do universo dos quadrinhos, possui formação acadêmica focada na área de exatas: é graduado em Física pela Universidade Federal, cursou dois anos de Matemática e concluiu o Mestrado em Física Nuclear e Experimental na USP. Trabalhou por um ano no CERN, na Suíça, e atuou durante 8 anos como professor universitário lecionando física, matemática, estatística e cálculo para cursos de engenharia. Na área artística, estudou durante 3 anos na Quanta Academia de Arte, onde aprendeu técnicas de desenho e arte-final.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Por que ele decidiu virar editor?</summary>
+      <div class="a">
+        <p>Uma das motivações para se tornar editor foi por volta de 2017, quando polêmicas político-partidárias surgiram em torno de traduções de mangás.</p>
+        <p>Porém essa não foi a causa isolada para abrir a editora. A decisão amadureceu ao longo dos anos seguintes, misturando paixão antiga por quadrinhos, instabilidade profissional (trocas de emprego) e mudanças pessoais mais profundas durante o período da pandemia.</p>
+        <p>Assim, o desejo de transicionar de carreira, a recusa em morar fora do Brasil para atuar na área de física e a vontade de empreender em sua paixão de infância por quadrinhos consolidaram sua decisão de fundar a editora.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Como foi criar a editora sem contatos no mercado?</summary>
+      <div class="a">
+        <p>Ao tentar ingressar no mercado, Eric percebeu que o meio editorial era bastante fechado para quem não possuía experiência prévia: sem rede de contatos, é difícil conseguir informações sobre gráficas, licenciamento e distribuição. Tentou primeiro encontrar sócios ou parceiros com experiência no setor, mas não conseguiu — os amigos ligados a quadrinhos não tinham perfil empreendedor, e ele próprio não tinha experiência com negócios.</p>
+        <ul>
+          <li>Aprendeu sozinho a usar Photoshop, GIMP e Inkscape;</li>
+          <li>Para começar, lançou de forma independente o mangá <i>Urusei Yatsura</i>, investindo dinheiro do próprio bolso para cobrir os custos de produção.</li>
+          <li>Comprou os mangás originais em lojas do bairro da Liberdade, em São Paulo, e os escaneou pessoalmente;</li>
+          <li>Contratou um tradutor de japonês depois que tentativas de tradução automática (ChatGPT e Google Tradutor) se mostraram pouco confiáveis;</li>
+          <li>Orçou e negociou diretamente com gráficas;</li>
+          <li>Aprendeu a criar o próprio site assistindo tutoriais no YouTube, e comprou hospedagem e e-mail profissional por conta própria.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Por que ele publicou o primeiro mangá sem licença?</summary>
+      <div class="a">
+        <p>Antes de decidir publicar por conta própria, ele tentou contato com a editora japonesa detentora dos direitos, mas não obteve resposta. Diante do mercado fechado e da dificuldade de encontrar um caminho oficial, decidiu seguir em frente mesmo assim, lançando o mangá <em>Urusei Yatsura</em> em 18 de abril de 2025 sem licenciamento formal.</p>
+        <p>O investimento na primeira tiragem saiu do próprio bolso — custos com gráfica, tradução e revisão — só para ter o livro fisicamente pronto.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>O que ele aprendeu com a repercussão do lançamento?</summary>
+      <div class="a">
+        <p>A repercussão foi maior do que ele esperava, incluindo críticas públicas de outros canais e blogs do meio. Ao analisar os números com mais frieza — inclusive contando manualmente os comentários de um vídeo com cerca de 8 mil visualizações — percebeu que o volume de críticas representava algo perto de 4% do público total, enquanto a grande maioria simplesmente não se manifestava.</p>
+        <p>Como resposta prática às críticas, formalizou a operação: abriu <strong>CNPJ</strong>, contratou <strong>um contador</strong> e um <strong>advogado especialista em direitos autorais</strong> para tratar a questão do licenciamento junto à editora japonesa. Ele reconhece que o episódio "mancha" um pouco a história da editora e que hoje não recomendaria começar da mesma forma. Por outro lado, acredita que,sem esse passo arriscado, provavelmente não teria conseguido entrar no mercado.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 2. OBJETIVO DA EDITORA -->
+  <section class="category" data-cat="objetivo">
+    <div class="category-head">
+      <span class="category-num">02</span>
+      <h2>Objetivo da editora</h2>
+    </div>
+
+    <details class="qa">
+      <summary>Qual é o objetivo da Ao Leitor com Carinho?</summary>
+      <div class="a">
+        <p>O objetivo é trazer ao Brasil publicações inéditas ou resgatar materiais que, no passado, foram publicados de forma irregular ou desorganizada — muitas vezes fora de ordem cronológica, como acontecia com antigas revistas nacionais que misturavam histórias sem critério de numeração.</p>
+        <p>Por trás disso está a percepção de que o quadrinho físico é uma mídia em risco de desaparecer no Brasil, seguindo um caminho parecido ao do DVD e do Blu-ray: cada vez menos distribuidoras, tiragens menores e custos mais altos. A aposta é trazer, enquanto ainda é viável, aquilo que "teve seu momento de chegar ao Brasil e não veio".</p>
+        <p>Atualmente a editora busca publicar histórias da Era de Ouro e Prata dos quadrinhos em edições coloridas e no formato de antologias e séries contínuas. Além disso, o projeto visa construir um portfólio prático de restauração e edição.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Por que focar em material fora do <i>mainstream</i>?</summary>
+      <div class="a">
+        <p>A escolha por títulos pouco conhecidos é deliberada: se esse material não for lançado agora, dificilmente outra editora o fará, pois não possuem tanta popularidade quanto outros títulos.</p>
+        <p>O próprio mangá de estreia é um exemplo: mesmo entre fãs de mangá, boa parte do público não conhecia a obra antes do lançamento. A visão é que existe público para praticamente qualquer gênero — inclusive nichos como terror ou material adulto —, mas que cabe à editora decidir o tamanho desse público, como divulgar e como atendê-lo.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 3. MÉTODOS DE TRABALHO -->
+  <section class="category" data-cat="metodos">
+    <div class="category-head">
+      <span class="category-num">03</span>
+      <h2>Métodos de trabalho</h2>
+    </div>
+
+    <details class="qa">
+      <summary>Como funciona o processo de produção das revistas?</summary>
+      <div class="a">
+        <p>Para o material de domínio público, o ponto de partida costuma ser um arquivo digitalizado (ou obtido na internet ou escaneado de uma cópia física), que passa por um longo processo manual de restauração de imagem, diagramação e letreiramento até atingir um ótimo padrão. Um colecionador norte-americano consegue digitalizações de melhor qualidade de material mais raro.</p>
+        <p>Por enquanto, a impressão é feita em gráfica digital, pois o volume atual de vendas ainda não justifica o custo de uma gráfica <i>offset</i>.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Quem trabalha na editora?</summary>
+      <div class="a">
+        <p>Atualmente, tudo é feito por uma única pessoa: restauração de imagem, letreiramento, edição, atendimento ao público, embalagem dos pedidos e envio nos Correios. Isso já gerou gargalos — em períodos de maior demanda, chegou a levar mais de uma semana para responder a alguns pedidos, o que motivou o plano de ampliar o prazo de entrega informado (de poucos dias para até <strong>10 dias úteis</strong>).</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Como e onde as revistas são vendidas e entregues?</summary>
+      <div class="a">
+        <p>As vendas acontecem pelo <strong>site oficial da editora</strong>. Os envios são feitos por <strong>Registro Módico</strong> (mais barata, mas mais lenta), com frete já incluso no preço da revista, o mesmo valor para qualquer região do Brasil. A editora também avalia fechar um contrato com uma agência franqueada dos Correios para automatizar o rastreio dos pedidos.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 4. ESTRATÉGIAS DE PUBLICAÇÃO -->
+  <section class="category" data-cat="estrategias">
+    <div class="category-head">
+      <span class="category-num">04</span>
+      <h2>Estratégias de publicação</h2>
+    </div>
+
+    <details class="qa">
+      <summary>Por que os nomes "Gibi Mensal" e "Lobinho"?</summary>
+      <div class="a">
+        <p>A estratégia da editora organiza-se em antologias (mixes) e séries contínuas:</p>
+        <ul>
+        <li><strong>Antologias:</strong> revistas que reúnem histórias de diferentes personagens, como Gibi Mensal e Lobinho;</li>
+        <li><strong>Séries contínuas:</strong> revistas que seguem uma sequência cronológica de histórias de um mesmo personagem, como Agentes Thunder.</li>  
+        </ul>
+        <p><strong>Gibi Mensal</strong> e <strong>Lobinho</strong> resgatam revistas históricas brasileiras que reuniam, em formato de antologia, diversas histórias importadas — o mesmo formato adotado hoje pela editora. "Gibi Mensal" não pôde ser registrado como marca junto ao INPI porque "gibi" é considerado termo descritivo, e não marca; já "Lobinho" passou por uma avaliação jurídica prévia com o advogado especializado em copyright antes do lançamento, por existir um grupo de escoteiros registrado com nome parecido. A princípio, não há impedimento legal no uso desse nome</p>
+</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>O que vem por aí nas coleções?</summary>
+      <div class="a">
+        <p>Os planos incluem, entre outros:</p>
+        <ul>
+          <li><strong>Gibi Mensal</strong>: continuação cronológica das histórias do Capitão Marvel (Fawcett) e do Capitão Átomo, além de personagens como Super Mouse e Buck Rogers;</li>
+          <li><strong>Lobinho</strong>: sequência de Besouro Azul (na versão Ted Kord), do Pacificador e do Homem Borracha, entre outros personagens da fase Quality Comics;</li>
+          <li><strong>Agentes Thunder</strong>: uma revista própria planejada para 28 edições, reunindo o personagem-título com spin-offs como Dynamo e No-Man.</li>
+        </ul>
+        <p>A meta declarada é tornar as três publicações mensais e, eventualmente, padronizar o número de páginas de cada edição para manter o preço estável.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>A editora também publica Spirit, de Will Eisner?</summary>
+      <div class="a">
+        <p>Sim. Em agosto de 2026, a Ao Leitor com Carinho deu início a uma nova coleção dedicada a republicar as primeiras histórias de <strong>Spirit</strong>, personagem criado por Will Eisner. A edição de estreia reúne as nove primeiras histórias do herói, publicadas originalmente entre junho e julho de 1940.</p>
+        <p>É a mesma lógica editorial já usada em Gibi Mensal e Lobinho: resgatar, em formato de antologia, material considerado em domínio público — só que, dessa vez, em torno de um personagem bem mais conhecido do grande público do que os heróis esquecidos da fase Quality/Charlton.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Qual o plano para o futuro da editora?</summary>
+      <div class="a">
+        <p>No médio prazo, o objetivo é profissionalizar a operação: montar uma pequena redação fora de casa, contar com mais gente trabalhando junto e buscar licenciamento oficial para projetos futuros — inclusive material mais moderno, mantendo a mesma linha editorial voltada a quadrinhos leves e para todo público, sem foco em conteúdo adulto ou extremamente violento.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 5. PIRATARIA X NÃO LICENCIADO -->
+  <section class="category" data-cat="pirataria">
+    <div class="category-head">
+      <span class="category-num">05</span>
+      <h2>Pirataria x publicação não licenciada</h2>
+    </div>
+
+    <details class="qa">
+      <summary>Qual é a diferença entre pirataria e publicação não licenciada?</summary>
+      <div class="a">
+        <p>Pirataria é a cópia de um produto oficial já existente — normalmente de qualidade inferior e vendida por um preço mais baixo do que o original licenciado. Uma publicação não licenciada, por outro lado, pode ser uma edição original, produzida do zero (tradução, diagramação, impressão próprias), que simplesmente não obteve autorização formal do detentor dos direitos no país de origem.</p>
+        <p>Porém, essa distinção é pouco compreendida pelo público em geral, que tende a simplificar qualquer publicação sem licença como "pirata".</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>O mangá publicado era pirata?</summary>
+      <div class="a">
+        <p>Tratou-se de um lançamento sem licença do país de origem, sem versão oficial no Brasil, então não havia um "original licenciado" para copiar. A edição foi produzida de forma própria — com tradução, diagramação e impressão contratadas por ele — e registrada com ISBN junto à Câmara Brasileira do Livro, o que a torna reconhecida como publicação brasileira oficial, ainda que sem o licenciamento da editora japonesa detentora dos direitos da obra original.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 6. ERA DE OURO -->
+  <section class="category" data-cat="era-de-ouro">
+    <div class="category-head">
+      <span class="category-num">06</span>
+      <h2>Era de ouro: o que não pode ser publicado</h2>
+    </div>
+
+    <details class="qa">
+      <summary>Por que algumas histórias da era de ouro estão em domínio público e outras não?</summary>
+      <div class="a">
+        <p>O ponto-chave é a diferença entre <strong>personagem</strong> e <strong>história</strong>: o dono de um personagem pode ser diferente do status de domínio público de uma história específica desse personagem. Nos Estados Unidos, o sistema antigo de <i>copyright</i> exigia que a editora renovasse periodicamente o registro das obras; quando isso não acontecia, a história específica caía em domínio público, mesmo que o personagem continuasse tendo dono legal.</p>
+        <p>Muitas pequenas editoras das décadas de 1940 a 1960 — como Quality Comics, Fawcett e Charlton Comics — não renovaram os registros de várias dessas histórias antes de serem compradas por editoras maiores (a DC adquiriu a Quality nos anos 1970 e a Charlton nos anos 1980). Resultado: a DC é hoje dona dos personagens, mas boa parte das histórias originais publicadas por essas editoras menores estão em domínio público.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Quais personagens ele NÃO pode publicar, e por quê?</summary>
+      <div class="a">
+        <p>Mesmo trabalhando com histórias em domínio público, existem limites claros:</p>
+        <ul>
+          <li>Não é permitido criar histórias <strong>novas</strong> com esses personagens — apenas traduzir e compilar as histórias antigas que já caíram em domínio público;</li>
+          <li>Não é permitido lançar uma revista usando o nome do personagem como marca de capa (por exemplo, uma edição especial batizada apenas com o nome de um herói), pois isso configuraria uso de marca registrada;</li>
+          <li>Logotipos específicos de séries antigas (como o logo clássico de "Pacificador") também podem ter dono próprio, separado dos direitos sobre a história em si;</li>
+          <li>Personagens que nunca deixaram sua editora de origem — caso dos clássicos da Marvel/Timely, como Capitão América, Namor e Tocha Humana, ou dos grandes ícones da DC, como Superman, Batman e Mulher Maravilha — não estão em domínio público, porque essas editoras sempre mantiveram as renovações de direitos em dia. Eles só entrarão em domínio público quando o prazo legal norte-americano se esgotar.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Como funciona a regra do domínio público entre Brasil e Estados Unidos?</summary>
+      <div class="a">
+        <p>O Brasil é signatário da Convenção de Berna, na qual vale a regra do país de origem da obra para fins de reconhecimento do domínio público. Assim, uma história que já esteja em domínio público nos Estados Unidos pode ser publicada legalmente no Brasil, mesmo que o prazo de domínio público previsto na lei brasileira (70 anos após a morte do autor) ainda não tenha se completado.</p>
+        <p>Ainda assim, o editor reconhece que a situação não está isenta de riscos residuais: mesmo sem fundamento jurídico forte, um detentor de marca poderia, em tese, reclamar de algum uso específico — como o de um logotipo — e a editora precisaria ajustar o material caso isso ocorresse.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Por que as histórias de Spirit, de Will Eisner, poderiam estar em domínio público?</summary>
+      <div class="a">
+        <p>O caso de Spirit é considerado mais delicado do que o dos outros personagens publicados pela editora, justamente por se tratar de um herói muito mais conhecido. A explicação envolve uma particularidade histórica: Spirit estreou em 1940 como encarte de domingo distribuído a jornais dos Estados Unidos pelo Register and Tribune Syndicate, e só depois passou a ser republicado pela Quality Comics — primeiro dentro da revista <em>Police Comics</em> e, mais tarde, em uma revista própria chamada <em>The Spirit</em>.</p>
+        <p>Desta forma, a primeira edição da coleção reúne as nove primeiras histórias, originalmente publicadas nos jornais entre junho e julho de 1940.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Esse argumento de domínio público para Spirit foi verificado de forma independente?</summary>
+      <div class="a">
+        <p>Sim. Um <a href="https://youtu.be/wgXXCCRq5nc?si=fNARARxxGDe2Y2Pz" target="_blank">canal de jornalismo especializado em quadrinhos</a> apurou o caso e consultou o advogado Vittor Jardim, especialista em propriedade intelectual, além de pesquisar registros públicos de copyright dos Estados Unidos. Alguns pontos levantados nessa apuração:</p>
+        <ul>
+          <li>Em 1940, valia nos Estados Unidos o <strong>Copyright Act de 1909</strong>, que previa proteção por 28 anos, renovável por mais 28 — sem renovação registrada, a obra caía em domínio público;</li>
+          <li>O banco de dados <em>Online Books Page</em>, da Universidade da Pensilvânia, não localizou registro de renovação para essas histórias de Spirit; o <em>Digital Comic Museum</em> e a <em>Wikimedia Commons</em> também tratam esse material como domínio público;</li>
+          <li>A própria apuração jornalística pesquisou os registros de copyright por diferentes termos (Spirit, The Spirit, Will Eisner, o nome do syndicate e o do fundador da Quality Comics) e não encontrou pedido de renovação no período correspondente;</li>
+          <li>Ainda assim, não encontrar um registro não prova que ele nunca tenha existido — documentos muito antigos podem não estar digitalizados ou disponíveis apenas para consulta presencial.</li>
+        </ul>
+        <p>Por isso, o advogado consultado classificou a publicação desse material no Brasil como um <strong>"risco calculado"</strong>: diferente de um caso incontestável de domínio público (como o clássico prazo de 70 anos após a morte do autor), aqui existe uma margem real de incerteza. A avaliação geral é que o argumento é plausível e tem respaldo nas fontes consultadas, mas não é uma certeza absoluta.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Por que vale a lei americana de 1940 e não a lei brasileira, nesse caso específico?</summary>
+      <div class="a">
+        <p>A resposta está nas convenções internacionais de direito autoral vigentes na época. A Convenção de Berna — a mais conhecida — é anterior, mas os Estados Unidos só aderiram a ela muito depois. No período em que Spirit foi originalmente publicado, Brasil e Estados Unidos eram signatários da <strong>Convenção de Buenos Aires de 1910</strong>, e era ela que regia as relações entre os dois países.</p>
+        <p>Segundo o advogado consultado na apuração, essa convenção determina que se deve considerar o prazo de proteção vigente no país de origem da obra — neste caso, os Estados Unidos. Ou seja, mesmo que a regra brasileira normalmente considere 70 anos após a morte do autor, esse prazo não pode "reviver" uma proteção que já se extinguiu no país onde a obra foi publicada originalmente.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>O personagem Spirit tem marca registrada? Isso afeta a publicação no Brasil?</summary>
+      <div class="a">
+        <p>Sim: tanto o nome quanto o design do personagem Spirit são marcas registradas nos Estados Unidos, pertencentes à <i>Will Eisner Studios Inc.</i> Essa proteção, porém, tem alcance territorial — vale apenas dentro dos Estados Unidos. Uma consulta ao INPI (o órgão brasileiro de registro de marcas e patentes), feita durante a apuração jornalística sobre o caso, não encontrou nenhuma marca correspondente registrada no Brasil.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 7. CURIOSIDADES -->
+  <section class="category" data-cat="curiosidades">
+    <div class="category-head">
+      <span class="category-num">07</span>
+      <h2>Curiosidades</h2>
+    </div>
+
+    <details class="qa">
+      <summary>De onde vem a palavra "gibi"?</summary>
+      <div class="a">
+        <p>Segundo o relato do editor, o termo tem origem em uma expressão de cunho racista usada no fim do século 19 e início do século 20 para se referir a crianças negras que vendiam jornais nas ruas. A Editora Globo teria adotado o nome décadas depois para batizar um mascote e, com o tempo, a palavra foi ressignificada até se tornar sinônimo popular de "revista em quadrinhos" no Brasil — sem que a Globo tenha conseguido registrá-la como marca em tentativas feitas entre o fim dos anos 1980 e o início dos anos 1990.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Existe alguma editora parecida nos Estados Unidos?</summary>
+      <div class="a">
+        <p>Sim. Nos Estados Unidos existe uma pequena editora independente chamada <strong>Gwandanaland Comics</strong>, que não vende em grandes redes e opera de forma parecida: publica obras que considera estarem em domínio público. Ela mantém um selo chamado <strong>Mid-Century Comics</strong>, que já lançou quadrinhos de Spirit usando exatamente o mesmo argumento jurídico adotado pela Ao Leitor com Carinho.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>É verdade que ele cheira os gibis?</summary>
+      <div class="a">
+        <p>Sim — por brincadeira, ele se descreve como "cheirador de gibi": um hábito herdado do próprio pai, que também tinha o costume de cheirar revistas antigas como parte do ritual de avaliar seu estado de conservação.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>O "Super Mouse" publicado é o mesmo do desenho animado?</summary>
+      <div class="a">
+        <p>Não exatamente. O personagem publicado pela editora é o "Super Mouse" original das revistas em quadrinhos, criado em novembro de 1942. Já o "Mighty Mouse" — o ratinho super-herói que ficou famoso no Brasil justamente sob o nome de "Super Mouse" por causa dos desenhos animados — é uma criação posterior e separada, de fevereiro de 1943, feita pelo estúdio <i>Terry Toons</i>, que teve de mudar de nome depois por conflito com o personagem original dos quadrinhos.</p>
+      </div>
+    </details>
+
+    <details class="qa">
+      <summary>Como ele traduz o material sozinho?</summary>
+      <div class="a">
+        <p>Apesar do editor ser fluente em inglês, para acelerar o processo de tradução do material de domínio público, ele lê o texto original em voz alta traduzindo em tempo real para o português, e usa um aplicativo de reconhecimento de voz para transformar a fala em texto digitado — depois revisando o resultado manualmente. Ele também recorre a ferramentas de IA como apoio pontual, por exemplo para buscar sinônimos de gírias ou expressões difíceis de traduzir, um uso que já gerou boatos infundados de que todo o processo de tradução seria feito unicamente por inteligência artificial.</p>
+      </div>
+    </details>
+  </section>
+
+  <div class="colophon">
+    Conteúdo compilado a partir de entrevistas em vídeo com o fundador da editora Ao Leitor com Carinho. Este FAQ tem caráter informativo e resume, em texto próprio, os principais pontos abordados na conversa.
+  </div>
+
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.filters button');
+  const categories = document.querySelectorAll('.category');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      categories.forEach(cat => {
+        if(filter === 'all' || cat.dataset.cat === filter){
+          cat.style.display = '';
+        } else {
+          cat.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
