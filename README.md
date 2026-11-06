@@ -2,7 +2,7 @@
 
 Página única em HTML com perguntas e respostas sobre o editor **Eric** e a editora **Ao Leitor com Carinho**: história, motivações, métodos de trabalho, estratégias de publicação, a diferença entre pirataria e publicação não licenciada, o domínio público na Era de Ouro dos quadrinhos e curiosidades.
 
-O conteúdo foi compilado a partir de duas fontes em vídeo (transcrições): uma entrevista com o editor e uma reportagem sobre a coleção de *Spirit*. O texto é uma síntese em palavras próprias, não uma reprodução das transcrições.
+O conteúdo foi compilado a partir de três fontes em vídeo (transcrições): uma entrevista com o editor, uma reportagem sobre a coleção de *Spirit* e uma discussão sobre direitos autorais e um vídeo de apresentação de novidades. O texto é uma síntese paráfrases, resumos e adptações, não uma reprodução das transcrições.
 
 ## Sumário
 
@@ -31,11 +31,9 @@ O conteúdo foi compilado a partir de duas fontes em vídeo (transcrições): um
 
 ```
 .
-├── index.html     # a página (renomeie de faq-ao-leitor-com-carinho.html)
+├── index.html     # a página
 └── README.md      # esta documentação
 ```
-
-> Para o GitHub Pages servir a página na raiz do site, o arquivo precisa se chamar `index.html`.
 
 ## Como visualizar
 
@@ -49,25 +47,6 @@ python3 -m http.server 8000
 ```
 
 > As fontes vêm do Google Fonts, então é necessária conexão com a internet para o visual completo. Sem ela, o navegador usa fontes substitutas (serifa e monoespaçada do sistema).
-
-## Publicar no GitHub Pages
-
-1. Crie um repositório no GitHub (por exemplo, `faq-ao-leitor-com-carinho`).
-2. Envie os arquivos:
-
-   ```bash
-   git init
-   git add index.html README.md
-   git commit -m "Primeira versão do FAQ"
-   git branch -M main
-   git remote add origin https://github.com/SEU-USUARIO/faq-ao-leitor-com-carinho.git
-   git push -u origin main
-   ```
-
-3. No repositório, abra **Settings → Pages**.
-4. Em **Build and deployment**, escolha **Deploy from a branch**, selecione a branch `main` e a pasta `/ (root)`, e salve.
-5. Após alguns minutos, a página ficará em:
-   `https://SEU-USUARIO.github.io/faq-ao-leitor-com-carinho/`
 
 ## Conteúdo da página
 
@@ -136,15 +115,13 @@ As cores ficam em variáveis CSS no topo do `<style>`:
 
 Fontes: **Anton** (títulos), **PT Serif** (texto) e **Special Elite** (detalhes em máquina de escrever).
 
+##Agradecimentos e Créditos
+**Ferramentas utilizadas:** Organização do HTML e das subcategorias pelo Claude 5.5 Sonnet.
+
 ## Aviso sobre o conteúdo jurídico
 
-As seções sobre domínio público, licenciamento e marcas descrevem o que foi dito pelo editor e pelos entrevistados nas fontes originais. **Não constituem aconselhamento jurídico.** O próprio advogado citado na reportagem classificou a publicação de *Spirit* como um "risco calculado", ou seja, há margem de incerteza. Para decisões práticas, consulte um profissional especializado em propriedade intelectual.
+As seções sobre domínio público, licenciamento e marcas descrevem o que foi dito pelo editor e pelos entrevistados nas fontes originais. **Não constituem aconselhamento jurídico.**
 
 ## Licença
 
-Defina a licença conforme sua preferência antes de publicar. Sugestões comuns:
-
 - **MIT**: livre para uso e modificação do código da página.
-- **CC BY 4.0**: indicada se você quiser permitir reuso do texto com atribuição.
-
-Lembre-se de que o conteúdo é derivado de entrevistas e reportagens de terceiros; mantenha a atribuição das fontes originais se redistribuir o texto.
