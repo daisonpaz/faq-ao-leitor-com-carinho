@@ -116,7 +116,7 @@ As cores ficam em variáveis CSS no topo do `<style>`:
 Fontes: **Anton** (títulos), **PT Serif** (texto) e **Special Elite** (detalhes em máquina de escrever).
 
 ##Agradecimentos e Créditos
-**Ferramentas utilizadas:** Organização do HTML e das subcategorias pelo Claude 5.5 Sonnet.
+**Ferramentas utilizadas:** Organização do HTML, CSS e das subcategorias foram feitos pelo Claude 5.5 Sonnet. Textos são meus.
 
 ## Aviso sobre o conteúdo jurídico
 
@@ -125,3 +125,4 @@ As seções sobre domínio público, licenciamento e marcas descrevem o que foi 
 ## Licença
 
 - **MIT**: livre para uso e modificação do código da página.
+- **CC BY 4.0**: para o texto, reuso com atribuição.
