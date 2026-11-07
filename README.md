@@ -1,8 +1,8 @@
 # FAQ — Ao Leitor com Carinho
 
-Página única em HTML com perguntas e respostas sobre o editor **Eric** e a editora **Ao Leitor com Carinho**: história, motivações, métodos de trabalho, estratégias de publicação, a diferença entre pirataria e publicação não licenciada, o domínio público na Era de Ouro dos quadrinhos e curiosidades.
+Página única em HTML - feita por um fã da editora - com perguntas e respostas sobre o editor **Eric** e a editora **Ao Leitor com Carinho**: história, motivações, métodos de trabalho, estratégias de publicação, a diferença entre pirataria e publicação não licenciada, o domínio público na Era de Ouro dos quadrinhos e curiosidades. Vi que o Eric estava sempre respondendo as mesmas perguntas, tanto nas entrevistas, no seu canal do Youtube quanto no grupo que ele mantém no Whatsapp com alguns dos seus compradores.
 
-O conteúdo foi compilado a partir de três fontes em vídeo (transcrições): uma entrevista com o editor, uma reportagem sobre a coleção de *Spirit* e uma discussão sobre direitos autorais e um vídeo de apresentação de novidades. O texto é uma síntese paráfrases, resumos e adptações, não uma reprodução das transcrições.
+O conteúdo foi compilado a partir de três fontes em vídeo (transcrições): [uma entrevista com o editor](https://www.youtube.com/watch?v=sE6PmoMY6ik), [uma reportagem sobre a coleção de *Spirit* com uma discussão sobre direitos autorais](https://youtu.be/wgXXCCRq5nc?si=_7e7hXhfgfXyLskz) e um [vídeo de apresentação de novidades](https://youtu.be/e6OJK0-u0Fc?si=VkZyG8HbVXQljXDR). O texto é uma síntese com paráfrases, resumos e adptações, não uma reprodução fiel das transcrições.
 
 ## Sumário
 
